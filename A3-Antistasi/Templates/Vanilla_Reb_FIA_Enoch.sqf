@@ -6,23 +6,23 @@ if (side petros == west) exitWith {call compile preProcessFileLineNumbers "Templ
 nameTeamPlayer = if (worldName == "Tanoa") then {"SDK"} else {"FIA"};
 SDKFlag = "Flag_Altis_F";
 SDKFlagTexture = "\A3\Data_F\Flags\Flag_Altis_CO.paa";
-typePetros = "I_G_officer_F";
+typePetros = "I_E_Scientist_F";
 
 ////////////////////////////////////
 //             UNITS             ///
 ////////////////////////////////////
 //First Entry is Guerilla, Second Entry is Para/Military
-staticCrewTeamPlayer = "I_G_Soldier_unarmed_F";
-SDKUnarmed = "I_G_Survivor_F";
-SDKSniper = ["I_G_Sharpshooter_F","I_ghillie_ard_F"];
-SDKATman = ["I_G_Soldier_LAT2_F","I_Soldier_LAT2_F"];
-SDKMedic = ["I_G_medic_F","I_medic_F"];
-SDKMG = ["I_G_Soldier_AR_F","I_Soldier_AR_F"];
-SDKExp = ["I_G_Soldier_exp_F","I_Soldier_exp_F"];
-SDKGL = ["I_G_Soldier_GL_F","I_Soldier_GL_F"];
-SDKMil = ["I_G_Soldier_lite_F","I_Soldier_lite_F"];
-SDKSL = ["I_G_Soldier_SL_F","I_Soldier_SL_F"];
-SDKEng = ["I_G_engineer_F","I_engineer_F"];
+staticCrewTeamPlayer = "I_E_Soldier_unarmed_F";
+SDKUnarmed = "I_E_Survivor_F";
+SDKSniper = ["I_L_Hunter_F","I_E_soldier_M_F"];
+SDKATman = ["I_E_Soldier_LAT2_F","I_E_Soldier_LAT_F"];
+SDKMedic = ["I_E_medic_F","I_E_medic_F"];
+SDKMG = ["I_L_Criminal_SMG_F","I_E_Soldier_AR_F"];
+SDKExp = ["I_L_Criminal_SG_F","I_E_Soldier_exp_F"];
+SDKGL = ["I_L_Looter_SMG_F","I_E_Soldier_GL_F"];
+SDKMil = ["I_L_Looter_Rifle_F","I_E_Soldier_lite_F"];
+SDKSL = ["I_L_Looter_Pistol_F","I_E_Soldier_SL_F"];
+SDKEng = ["I_L_Looter_SG_F","I_E_engineer_F"];
 
 ////////////////////////////////////
 //            GROUPS             ///
@@ -45,19 +45,19 @@ soldiersSDK = sdkTier1 + sdkTier2 + sdkTier3;
 //           VEHICLES            ///
 ////////////////////////////////////
 //Military Vehicles
-vehSDKBike = "I_G_Quadbike_01_F";
+vehSDKBike = "I_E_Quadbike_01_F";
 vehSDKLightArmed = "I_G_Offroad_01_armed_F";
 vehSDKAT = "I_G_Offroad_01_AT_F";
-vehSDKLightUnarmed = "I_G_Offroad_01_F";
-vehSDKTruck = "I_G_Van_01_transport_F";
+vehSDKLightUnarmed = "I_E_Offroad_01_comms_F";
+vehSDKTruck = "I_E_Van_02_transport_F";
 //vehSDKHeli = "I_C_Heli_Light_01_civil_F";
 vehSDKPlane = "I_C_Plane_civil_01_F";
 vehSDKBoat = "I_G_Boat_Transport_01_F";
-vehSDKRepair = "I_G_Offroad_01_repair_F";
+vehSDKRepair = "I_E_Truck_02_Box_F";
 
 //Civilian Vehicles
-civCar = "C_Offroad_01_F";
-civTruck = "C_Van_01_transport_F";
+civCar = "C_Offroad_01_covered_F";
+civTruck = "C_Van_02_transport_F";
 civHeli = "C_Heli_Light_01_civil_F";
 civBoat = "C_Boat_Transport_02_F";
 
@@ -65,10 +65,10 @@ civBoat = "C_Boat_Transport_02_F";
 //        STATIC WEAPONS         ///
 ////////////////////////////////////
 //Assembled Static Weapons
-SDKMGStatic = "I_HMG_01_high_F";
-staticATteamPlayer = "I_Static_AT_F";
-staticAAteamPlayer = "I_Static_AA_F";
-SDKMortar = "I_G_Mortar_01_F";
+SDKMGStatic = "I_E_HMG_01_high_F";
+staticATteamPlayer = "I_E_Static_AT_F";
+staticAAteamPlayer = "I_E_Static_AA_F";
+SDKMortar = "I_E_Mortar_01_F";
 SDKMortarHEMag = "8Rnd_82mm_Mo_shells";
 SDKMortarSmokeMag = "8Rnd_82mm_Mo_Smoke_white";
 

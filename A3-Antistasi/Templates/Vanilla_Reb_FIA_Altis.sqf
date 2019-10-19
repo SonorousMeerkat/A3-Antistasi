@@ -7,7 +7,7 @@ if (worldName == "Tanoa") exitWith {call compile preProcessFileLineNumbers "Temp
 nameTeamPlayer = if (worldName == "Tanoa") then {"SDK"} else {"FIA"};
 SDKFlag = "Flag_Altis_F";
 SDKFlagTexture = "\A3\Data_F\Flags\Flag_Altis_CO.paa";
-typePetros = "I_G_officer_F";
+typePetros = "I_Story_Colonel_F";
 
 ////////////////////////////////////
 //             UNITS             ///
@@ -15,8 +15,8 @@ typePetros = "I_G_officer_F";
 //First Entry is Guerilla, Second Entry is Para/Military
 staticCrewTeamPlayer = "I_G_Soldier_unarmed_F";
 SDKUnarmed = "I_G_Survivor_F";
-SDKSniper = ["I_G_Sharpshooter_F","I_ghillie_ard_F"];
-SDKATman = ["I_G_Soldier_LAT2_F","I_Soldier_LAT2_F"];
+SDKSniper = ["I_G_Sharpshooter_F","I_Sniper_F"];
+SDKATman = ["I_G_Soldier_LAT_F","I_Soldier_LAT_F"];
 SDKMedic = ["I_G_medic_F","I_medic_F"];
 SDKMG = ["I_G_Soldier_AR_F","I_Soldier_AR_F"];
 SDKExp = ["I_G_Soldier_exp_F","I_Soldier_exp_F"];

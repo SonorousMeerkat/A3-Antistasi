@@ -4,7 +4,7 @@
 nameTeamPlayer = "FIA";
 SDKFlag = "Flag_FIA_F";
 SDKFlagTexture = "\A3\Data_F\Flags\Flag_FIA_CO.paa";
-typePetros = "B_G_officer_F";
+typePetros = "B_Captain_Pettka_F";
 
 ////////////////////////////////////
 //             UNITS             ///
@@ -12,15 +12,15 @@ typePetros = "B_G_officer_F";
 //First Entry is Guerilla, Second Entry is Para/Military
 staticCrewTeamPlayer = "B_G_Soldier_unarmed_F";
 SDKUnarmed = "B_G_Survivor_F";
-SDKSniper = ["B_G_Soldier_M_F","B_G_Sharpshooter_F"];
-SDKATman = ["B_G_Soldier_LAT2_F","B_G_Soldier_LAT_F"];
-SDKMedic = ["B_G_medic_F","B_G_medic_F"];
-SDKMG = ["B_G_Soldier_AR_F","B_G_Soldier_AR_F"];
-SDKExp = ["B_G_Soldier_exp_F","B_G_Soldier_exp_F"];
-SDKGL = ["B_G_Soldier_GL_F","B_G_Soldier_GL_F"];
-SDKMil = ["B_G_Soldier_lite_F","B_G_Soldier_lite_F"];
-SDKSL = ["B_G_Soldier_SL_F","B_G_Soldier_SL_F"];
-SDKEng = ["B_G_engineer_F","B_G_engineer_F"];
+SDKSniper = ["B_G_Soldier_M_F","B_sniper_F"];
+SDKATman = ["B_G_Soldier_LAT_F","B_Soldier_LAT_F"];
+SDKMedic = ["B_G_medic_F","B_medic_F"];
+SDKMG = ["B_G_Soldier_AR_F","B_Soldier_AR_F"];
+SDKExp = ["B_G_Soldier_exp_F","B_Soldier_exp_F"];
+SDKGL = ["B_G_Soldier_GL_F","B_Soldier_GL_F"];
+SDKMil = ["B_G_Soldier_lite_F","B_Soldier_lite_F"];
+SDKSL = ["B_G_Soldier_SL_F","B_Soldier_SL_F"];
+SDKEng = ["B_G_engineer_F","B_engineer_F"];
 
 ////////////////////////////////////
 //            GROUPS             ///
