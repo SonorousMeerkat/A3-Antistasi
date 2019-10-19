@@ -100,7 +100,7 @@
 		_types set [IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL,[]];\
 		_types set [IDC_RSCDISPLAYARSENAL_TAB_CARGOTHROW,[/*"Grenade","SmokeShell"*/]];\
 		_types set [IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT,[/*"Mine","MineBounding","MineDirectional"*/]];\
-		_types set [IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC,["FirstAidKit","Medikit","MineDetector","Toolkit"]];
+		_types set [IDC_RSCDISPLAYARSENAL_TAB_CARGOMISC,["FirstAidKit","Medikit","MineDetector","ToolKit"]];
 
 #define STATS_WEAPONS\
 	["reloadtime","dispersion","maxzeroing","hit","mass","initSpeed"],\
@@ -1735,7 +1735,7 @@ switch _mode do {
 			case IDC_RSCDISPLAYARSENAL_TAB_NVGS:{
 				_oldItem = hmd player;
 				if (_oldItem != _item) then {
-					player removeweapon _oldItem;
+					player removeWeaponGlobal _oldItem;
 					[_index, _oldItem] call jn_fnc_arsenal_addItem;
 					if (_item != "") then{
 						player addweapon _item;
@@ -1746,7 +1746,7 @@ switch _mode do {
 			case IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS: {
 				_oldItem = binocular player;
 				if (_oldItem != _item) then {
-					player removeweapon _oldItem;
+					player removeWeaponGlobal _oldItem;
 					[_index,_oldItem] call jn_fnc_arsenal_addItem;
 					if (_item != "") then{
 						player addweapon _item;
@@ -1794,7 +1794,7 @@ switch _mode do {
 
 
 					//remove weapon
-					player removeweapon _oldItem;
+					player removeWeaponGlobal _oldItem;
 					[_index, _oldItem] call jn_fnc_arsenal_addItem;
 
 					//add new weapon
@@ -2709,7 +2709,7 @@ switch _mode do {
 		};
 
 		if(player getUnitTrait "Engineer")then {
-					_itemsBackpack pushback ["Toolkit",1];
+					_itemsBackpack pushback ["ToolKit",1];
 					if(hasACE) then {
 						_itemsbackpack pushback ["ACE_Clacker",1];
 						_itemsbackpack pushback ["ACE_SpraypaintRed",4];

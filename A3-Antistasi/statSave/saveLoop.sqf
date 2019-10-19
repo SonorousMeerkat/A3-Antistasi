@@ -24,18 +24,12 @@ private ["_garrison"];
 ["prestigeCSAT", prestigeCSAT] call fn_SaveStat;
 ["dateX", date] call fn_SaveStat;
 ["skillFIA", skillFIA] call fn_SaveStat;
-["destroyedCities", destroyedCities] call fn_SaveStat;
+["destroyedSites", destroyedSites] call fn_SaveStat;
 ["distanceSPWN", distanceSPWN] call fn_SaveStat;
 ["civPerc", civPerc] call fn_SaveStat;
 ["chopForest", chopForest] call fn_SaveStat;
 ["maxUnits", maxUnits] call fn_SaveStat;
 ["nextTick", nextTick - time] call fn_SaveStat;
-/*
-["unlockedWeapons", unlockedWeapons] call fn_SaveStat;
-["unlockedItems", unlockedItems] call fn_SaveStat;
-["unlockedMagazines", unlockedMagazines] call fn_SaveStat;
-["unlockedBackpacks", unlockedBackpacks] call fn_SaveStat;
-*/
 ["weather",[fogParams,rain]] call fn_SaveStat;
 ["destroyedBuildings",destroyedBuildings] call fn_SaveStat;
 //["firstLoad",false] call fn_SaveStat;

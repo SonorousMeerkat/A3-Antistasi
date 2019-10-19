@@ -34,6 +34,7 @@ class A3A
 		class intelFound {};
 		class isFrontline {};
 		class isTheSameIsland {};
+		class joinMultipleGroups {};
 		class keys {};
 		class localizar {};
 		class location {};
@@ -65,13 +66,13 @@ class A3A
 		class sellVehicle {};
 		class setMarkerAlphaForSide {};
 		class sizeMarker {};
+		class splitVehicleCrewIntoOwnGroups {};
 		class startBreachVehicle {};
 		class statistics {};
 		class stripGearFromLoadout {};
 		class teleportVehicleToBase {};
 		class timingCA {};
 		class translateVariable {};
-		class undercover {};
 		class unlockVehicle {};
 		class zoneCheck {};
 	};
@@ -299,13 +300,13 @@ class A3A
 		class ACEpvpReDress {};
 		class ammunitionTransfer {};
 		class arsenalManage {};
-		class boxAAF {};
 		class checkRadiosUnlocked {};
 		class configSort {};
 		class crateLootParams {};
 		class CSATCrate {};
 		class dress {};
 		class empty {};
+		class equipmentClassToCategories {};
 		class equipmentSort {};
 		class getRadio {};
 		class itemSort {};
@@ -314,6 +315,7 @@ class A3A
 		class NATOCrate {};
 		class randomRifle {};
 		class transfer {};
+		class unlockEquipment {};
 		class vehicleSort {};
 	};
 
@@ -416,12 +418,22 @@ class A3A
 
 	class Templates
 	{
+		class aceModCompat {};
 		class getLoadout {};
+		class ifaModCompat {};
+		class rhsModCompat {};
+	};
+	
+	class Undercover
+	{
+		class initUndercover {};
+		class goUndercover {};
 	};
 
 	class Utility
 	{
 		class basicBackpack {};
+		class createDataObject {};
 		class dateToTimeString {};
 	};
 

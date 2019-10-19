@@ -9,7 +9,7 @@ petros allowdamage false;
 ["mrkCSAT"] call fn_LoadStat;
 ["difficultyX"] call fn_LoadStat;
 ["gameMode"] call fn_LoadStat;
-["destroyedCities"] call fn_LoadStat;
+["destroyedSites"] call fn_LoadStat;
 ["minesX"] call fn_LoadStat;
 ["countCA"] call fn_LoadStat;
 ["antennas"] call fn_LoadStat;
@@ -40,77 +40,17 @@ waitUntil {!isNil "arsenalInit"};
 //===========================================================================
 #include "\A3\Ui_f\hpp\defineResinclDesign.inc"
 
-unlockedWeapons = [];
-unlockedBackpacks = [];
-unlockedMagazines = [];
-unlockedOptics = [];
-unlockedItems = [];
-unlockedRifles = [];
-unlockedMG = [];
-unlockedGL = [];
-unlockedSN = [];
-unlockedAA = [];
-unlockedAT = [];
-
-{unlockedWeapons pushBack (_x select 0)} forEach (((jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_PRIMARYWEAPON) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_HANDGUN) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOTHROW) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOPUT) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_SECONDARYWEAPON)) select {_x select 1 == -1}); publicVariable "unlockedWeapons";
-{unlockedBackpacks pushBack (_x select 0)} forEach ((jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_BACKPACK) select {_x select 1 == -1}); publicVariable "unlockedBackpacks";
-{unlockedMagazines pushBack (_x select 0)} forEach (((jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAG) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_CARGOMAGALL)) select {_x select 1 == -1}); publicVariable "unlockedMagazines";
-{unlockedOptics pushBack (_x select 0)} forEach ((jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_ITEMOPTIC) select {_x select 1 == -1});
-unlockedOptics = [unlockedOptics,[],{getNumber (configfile >> "CfgWeapons" >> _x >> "ItemInfo" >> "mass")},"DESCEND"] call BIS_fnc_sortBy;
-publicVariable "unlockedOptics";
-{unlockedItems pushBack (_x select 0)} forEach ((((jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_HEADGEAR) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_VEST) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_GOGGLES) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_MAP) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_GPS) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_RADIO) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_COMPASS) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_WATCH) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_ITEMACC) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_ITEMMUZZLE) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_ITEMBIPOD) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_BINOCULARS) + (jna_dataList select IDC_RSCDISPLAYARSENAL_TAB_NVGS)) select {_x select 1 == -1}));
-unlockedItems = unlockedItems + unlockedOptics; publicVariable "unlockedItems";
-
-
-//unlockedRifles = unlockedweapons -  hguns -  mlaunchers - rlaunchers - ["Binocular","Laserdesignator","Rangefinder"] - srifles - mguns; publicVariable "unlockedRifles";
-//unlockedRifles = unlockedweapons select {_x in arifles}; publicVariable "unlockedRifles";
-
+//RESTORE THE STATE OF THE 'UNLOCKED' VARIABLES USING JNA_DATALIST
 {
-_weaponX = _x;
-if (_weaponX in arifles) then
+	private _arsenalTabDataArray = _x;
+	private _unlockedItemsInTab = _arsenalTabDataArray select { _x select 1 == -1 } apply { _x select 0 };
 	{
-	unlockedRifles pushBack _weaponX;
-	if (count (getArray (configfile >> "CfgWeapons" >> _weaponX >> "muzzles")) == 2) then
-		{
-		unlockedGL pushBack _weaponX;
-		};
-	}
-else
-	{
-	if (_weaponX in mguns) then
-		{
-		unlockedMG pushBack _weaponX;
-		}
-	else
-		{
-		if (_weaponX in srifles) then
-			{
-			unlockedSN pushBack _weaponX;
-			}
-		else
-			{
-			if (_weaponX in ((rlaunchers + mlaunchers) select {(getNumber (configfile >> "CfgWeapons" >> _x >> "lockAcquire") == 0)})) then
-				{
-				unlockedAT pushBack _weaponX;
-				}
-			else
-				{
-				if (_weaponX in (mlaunchers select {(getNumber (configfile >> "CfgWeapons" >> _x >> "lockAcquire") == 1)})) then {unlockedAA pushBack _weaponX};
-				};
-			};
-		};
-	};
-} forEach unlockedWeapons;
-if (hasIFA) then {unlockedRifles = unlockedRifles - ["LIB_M2_Flamethrower","LIB_PTRD"]};
+		[_x, true] call A3A_fnc_unlockEquipment;
+	} forEach _unlockedItemsInTab;
+} forEach jna_dataList;
 
-publicVariable "unlockedRifles";
-publicVariable "unlockedMG";
-publicVariable "unlockedSN";
-publicVariable "unlockedGL";
-publicVariable "unlockedAT";
-publicVariable "unlockedAA";
-//PBP-Bad NVG Check!
-if ("NVGoggles" in unlockedItems) then {haveNV = true; publicVariable "haveNV"};
+if !(unlockedNVGs isEqualTo []) then {haveNV = true; publicVariable "haveNV"};
+
 //Check if we have radios unlocked and update haveRadio.
 call A3A_fnc_checkRadiosUnlocked;
 
@@ -135,7 +75,7 @@ if (sidesX getVariable [_x,sideUnknown] == sideUnknown) then
 {[_x] call A3A_fnc_mrkUpdate} forEach (markersX - controlsX);
 if (count outpostsFIA > 0) then {markersX = markersX + outpostsFIA; publicVariable "markersX"};
 
-{if (_x in destroyedCities) then {[_x] call A3A_fnc_destroyCity}} forEach citiesX;
+{if (_x in destroyedSites) then {[_x] call A3A_fnc_destroyCity}} forEach citiesX;
 
 ["chopForest"] call fn_LoadStat;
 ["destroyedBuildings"] call fn_LoadStat;

@@ -122,7 +122,7 @@ specialVarLoads =
 [
 	"outpostsFIA","minesX","staticsX","countCA","antennas","mrkNATO","mrkSDK","prestigeNATO",
 	"prestigeCSAT","posHQ", "hr","armas","items","backpcks","ammunition","dateX", "prestigeOPFOR",
-	"prestigeBLUFOR","resourcesFIA","skillFIA","distanceSPWN","civPerc","maxUnits","destroyedCities",
+	"prestigeBLUFOR","resourcesFIA","skillFIA","distanceSPWN","civPerc","maxUnits","destroyedSites",
 	"garrison" ,"tasks","smallCAmrk","membersX","vehInGarage","destroyedBuildings","idlebases",
 	"idleassets","chopForest","weather","killZones","jna_dataList","controlsSDK","mrkCSAT","nextTick",
 	"bombRuns","difficultyX","gameMode","wurzelGarrison"
@@ -185,7 +185,7 @@ fn_SetStat =
 			forceWeatherChange
 			};
 		if(_varName == 'resourcesFIA') then {server setVariable ["resourcesFIA",_varValue,true]};
-		if(_varName == 'destroyedCities') then {destroyedCities = +_varValue; publicVariable "destroyedCities"};
+		if(_varName == 'destroyedSites') then {destroyedSites = +_varValue; publicVariable "destroyedSites"};
 		if(_varName == 'skillFIA') then
 			{
 			skillFIA = _varValue; publicVariable "skillFIA";
@@ -206,8 +206,12 @@ fn_SetStat =
 			{
 			destroyedBuildings= +_varValue;
 			//publicVariable "destroyedBuildings";
+			private _building = objNull;
 			{
-				(nearestObject [_x, "House"]) setDamage [1,false];
+				_building = nearestObject [_x, "House"];
+				private _ruin = [_building] call BIS_fnc_createRuin;
+				//JIP on the _ruin, as repairRuinedBuilding will delete the ruin.
+				[_building, true] remoteExec ["hideObject", 0, _ruin];
 			} forEach destroyedBuildings;
 			};
 		if(_varName == 'minesX') then
@@ -246,7 +250,7 @@ fn_SetStat =
 			    garrison setVariable [format ["%1_garrison", (_x select 0)], _x select 1, true];
 					garrison setVariable [format ["%1_requested", (_x select 0)], _x select 2, true];
 					garrison setVariable [format ["%1_over", (_x select 0)], _x select 3, true];
-					[_x] call A3A_fnc_updateReinfState;
+					[(_x select 0)] call A3A_fnc_updateReinfState;
 			} forEach _varvalue;
 		};
 		if(_varName == 'outpostsFIA') then
